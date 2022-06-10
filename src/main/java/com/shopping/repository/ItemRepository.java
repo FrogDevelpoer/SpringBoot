@@ -10,7 +10,7 @@ import java.util.List;
 
 // Repository는 데이터 베이스에 대한 CRUD 작업을 수행하는 인터페이스로 구현 합니다.
 public interface ItemRepository
-        extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item> {
+        extends JpaRepository<Item, Long>, QuerydslPredicateExecutor<Item>, ItemRepositoryCustom {
     // 상품 이름으로 데이터를 조회합니다.
     List<Item> findByItemNm(String itemNm);
 

@@ -2,11 +2,14 @@ package com.shopping.service;
 
 import com.shopping.dto.ItemFormDto;
 import com.shopping.dto.ItemImgDto;
+import com.shopping.dto.ItemSearchDto;
 import com.shopping.entity.Item;
 import com.shopping.entity.ItemImg;
 import com.shopping.repository.ItemImgRepository;
 import com.shopping.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -79,7 +82,7 @@ public class ItemService {
     // 화면(dto)에서 넘겨진 상품(item) 정보를 업데이트 합니다.
     public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception{
         Item item = itemRepository.findById(itemFormDto.getId())
-                        .orElseThrow(EntityNotFoundException::new);
+                                    .orElseThrow(EntityNotFoundException::new);
 
         item.updateItem(itemFormDto); // 화면에서 넘어온 dto를 이용하여 item Entity에게 전달합니다.
 
@@ -92,5 +95,10 @@ public class ItemService {
         }
 
         return item.getId(); // 수정된 상품의 id를 반환합니다.
+    }
+
+    public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        // 상품 검색 조건을 이용하여 페이징 객체를 반환
+        return itemRepository.getAdminItemPage(itemSearchDto, pageable);
     }
 }

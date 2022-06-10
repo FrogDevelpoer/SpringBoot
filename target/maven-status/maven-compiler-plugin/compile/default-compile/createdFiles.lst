@@ -1,2 +1,13 @@
-com\shopping\entity\QNewPerson.class
+com\shopping\entity\QBaseEntity.class
+com\shopping\dto\ItemSearchDto.class
+com\shopping\repository\ItemRepositoryCustom.class
 com\shopping\entity\QItem.class
+com\shopping\entity\QOrderItem.class
+com\shopping\repository\ItemRepositoryCustomImpl.class
+com\shopping\entity\QBaseTimeEntity.class
+com\shopping\entity\QCartItem.class
+com\shopping\entity\QItemImg.class
+com\shopping\entity\QCart.class
+com\shopping\entity\QOrder.class
+com\shopping\entity\QMember.class
+com\shopping\entity\QNewPerson.class
