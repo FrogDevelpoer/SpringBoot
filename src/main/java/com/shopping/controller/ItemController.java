@@ -123,10 +123,19 @@ public class ItemController {
 
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);     // for 검색 조건 보존
-        model.addAttribute("maxPage", 5);   // 하단에 보여줄 페이지 번호의 최대 개수
+        model.addAttribute("maxPage", 4);   // 하단에 보여줄 페이지 번호의 최대 개수
 
         return "item/itemMng";
     }
+
+    // 메인 화면에서 상품 이미지를 클릭하면 상품 상세 페이지로 이동
+    @GetMapping(value = "/item/{itemId}")
+    public String itemDtl(Model model, @PathVariable("itemId") Long itemId){
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        model.addAttribute("item", itemFormDto);
+        return "item/itemDtl";
+    }
+
 }
 
 

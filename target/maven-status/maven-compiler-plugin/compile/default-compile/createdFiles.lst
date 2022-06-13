@@ -4,7 +4,9 @@ com\shopping\repository\ItemRepositoryCustom.class
 com\shopping\entity\QItem.class
 com\shopping\entity\QOrderItem.class
 com\shopping\repository\ItemRepositoryCustomImpl.class
+com\shopping\dto\QMainItemDto.class
 com\shopping\entity\QBaseTimeEntity.class
+com\shopping\dto\MainItemDto.class
 com\shopping\entity\QCartItem.class
 com\shopping\entity\QItemImg.class
 com\shopping\entity\QCart.class
