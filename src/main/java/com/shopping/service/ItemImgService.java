@@ -16,10 +16,13 @@ import javax.persistence.EntityNotFoundException;
 @Transactional
 public class ItemImgService {
     @Value("${itemImgLocation}")
-    private String itemImgLocation ; // 상품 이미지가 업로드 되는 경로
+    private String itemImgLocation ; //= "file:///C:/shop/"; // 상품 이미지가 업로드 되는 경로
 
     private final ItemImgRepository itemImgRepository ;
     private final FileService fileService ;
+
+    private String savedImagePath = "/images/item/";
+//    private String savedImagePath = "file:///C:/shop/item/";
 
     // 상품에 대한 이미지 정보를 저장해 줍니다.
     public void saveItemImg(ItemImg itemImg, MultipartFile itemImgFile) throws Exception{
@@ -29,7 +32,7 @@ public class ItemImgService {
 
         if(!StringUtils.isEmpty(oriImgName)){ // 원본 파일 이름이 있으면 업로드 하기
             imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
-            imgUrl = "/images/item/" + imgName ;
+            imgUrl = savedImagePath + imgName ;
         }
 
         // 상품 이미지 정보를 저장합니다.
@@ -45,13 +48,13 @@ public class ItemImgService {
 
             // 기존에 등록했던 옛날 이미지는 삭제 합니다.
             if(!StringUtils.isEmpty(savedItemImg.getImgName())){
-                fileService.deleteFile(itemImgLocation + "/" + savedItemImg.getImgName());
+               fileService.deleteFile(itemImgLocation + "/" + savedItemImg.getImgName());
             }
 
             String oriImgName = itemImgFile.getOriginalFilename() ;
 
             String imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
-            String imgUrl = "/images/item/" +  imgName;
+            String imgUrl = savedImagePath +  imgName;
 
             // 상품 이미지 파일을 업로드합니다.
             savedItemImg.updateItemImg(oriImgName, imgName, imgUrl);

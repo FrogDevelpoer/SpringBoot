@@ -115,27 +115,29 @@ public class ItemController {
 
     @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
     public String itemManage(ItemSearchDto itemSearchDto,
-                             @PathVariable("page")Optional<Integer> page, Model model){
+                             @PathVariable("page") Optional<Integer> page,
+                             Model model){
 
-        // Integer page = Integer.parseInt(request.getParameter("page"));
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
-        Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
+        // Integer page = Integer.parseInt(request.getParameter("page")) ;
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 2) ;
+
+        Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable) ;
 
         model.addAttribute("items", items);
-        model.addAttribute("itemSearchDto", itemSearchDto);     // for 검색 조건 보존
-        model.addAttribute("maxPage", 4);   // 하단에 보여줄 페이지 번호의 최대 개수
+        model.addAttribute("itemSearchDto", itemSearchDto); // for 검색 조건 보존
+        model.addAttribute("maxPage", 4); // 하단에 보여줄 페이지 번호의 최대 갯수
 
-        return "item/itemMng";
+        return "item/itemMng" ;
     }
 
-    // 메인 화면에서 상품 이미지를 클릭하면 상품 상세 페이지로 이동
-    @GetMapping(value = "/item/{itemId}")
+    // 메인 화면에서 상품 이미지를 클릭하면 상품 상세 페이지로 이동합니다.
+    @GetMapping("/item/{itemId}")
     public String itemDtl(Model model, @PathVariable("itemId") Long itemId){
-        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
-        model.addAttribute("item", itemFormDto);
-        return "item/itemDtl";
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId) ;
+        model.addAttribute("item", itemFormDto) ;
+        return "item/itemDtl" ;
     }
-
 }
 
 

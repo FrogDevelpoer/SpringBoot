@@ -83,7 +83,7 @@ public class ItemService {
     // 화면(dto)에서 넘겨진 상품(item) 정보를 업데이트 합니다.
     public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception{
         Item item = itemRepository.findById(itemFormDto.getId())
-                                    .orElseThrow(EntityNotFoundException::new);
+                        .orElseThrow(EntityNotFoundException::new);
 
         item.updateItem(itemFormDto); // 화면에서 넘어온 dto를 이용하여 item Entity에게 전달합니다.
 
@@ -100,12 +100,21 @@ public class ItemService {
 
     @Transactional(readOnly = true)
     public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
-        // 상품 검색 조건을 이용하여 페이징 객체를 반환
+        // 상품 검색 조건을 이용하여 페이징 객체를 반환합니다.
         return itemRepository.getAdminItemPage(itemSearchDto, pageable);
     }
 
     @Transactional(readOnly = true)
     public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
-        return itemRepository.getMainItemPage(itemSearchDto, pageable);
+        return itemRepository.getMainItemPage(itemSearchDto, pageable) ;
     }
 }
+
+
+
+
+
+
+
+
+

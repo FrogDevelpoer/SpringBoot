@@ -34,26 +34,49 @@ public class Order extends BaseEntity {
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     public void addOrderItem(OrderItem orderItem){
-        orderItems.add(orderItem);  // 주문된 상품들을 컬렉션에 저장장
+        orderItems.add(orderItem) ; // 주문된 상품들을 컬렉션에 저장합니다.
         orderItem.setOrder(this);
     }
     public static Order createOrder(Member member, List<OrderItem> orderItemList){
         Order order = new Order();
-        order.setMember(member);    // 누가 이 주문을 하고 있는지
+        order.setMember(member); // 누가 이 주문을 하고 있는가.
 
         for(OrderItem orderItem : orderItemList){
             order.addOrderItem(orderItem);
         }
         order.setOrderStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
-        return order;
+        return order ;
     }
     public int getTotalPrice(){
-        // 모든 상품들의 sum(단가 * 수량)을 구합니다
+        // 모든 상품들의 sum(단가*수량)을 구합니다.
         int totalPrice = 0;
-        for(OrderItem orderItem : orderItems){
-            totalPrice += orderItem.getTotalPrice();
+        for(OrderItem orderItem:orderItems){
+            totalPrice += orderItem.getTotalPrice() ;
         }
         return totalPrice;
     }
+
+    // 주문 상태를 'CANCEL' 모드로 변경하고, 모든 상품들에 대한 재고를 늘려 줍니다.
+    public void cancelOrder(){
+        this.orderStatus = OrderStatus.CANCEL ;
+
+        for(OrderItem orderItem : orderItems){
+            orderItem.cancel();
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

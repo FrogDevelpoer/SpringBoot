@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public abstract class BaseTimeEntity {
     @CreatedDate // 엔터티 생성시 시간을 자동으로 기록할께요.
     @Column(updatable = false) // Entity 수정시 같이 갱신하지 않을 겁니다.
-    private LocalDateTime regTime ;
+    private LocalDateTime regTime ; //= LocalDateTime.now();
 
     @LastModifiedDate // 엔터티 수정시 시간을 자동으로 기록할께요.
     private LocalDateTime updateTime ;
