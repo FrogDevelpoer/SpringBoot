@@ -1,2 +1,10 @@
-com\shopping\entity\QNewPerson.class
+com\shopping\repository\NewPersonRepositoryTest.class
+com\shopping\service\MemberServiceTest.class
+com\shopping\ShoppingApplication.class
+com\shopping\repository\ItemRepositoryTest02.class
+com\shopping\repository\NewPersonRepository.class
+com\shopping\repository\NewPersonRepositoryTest02.class
 com\shopping\entity\QItem.class
+com\shopping\repository\ItemRepositoryCustomImpl.class
+com\shopping\repository\ItemRepositoryTest.class
+com\shopping\entity\QNewPerson.class

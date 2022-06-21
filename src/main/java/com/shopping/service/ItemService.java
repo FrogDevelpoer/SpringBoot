@@ -2,11 +2,15 @@ package com.shopping.service;
 
 import com.shopping.dto.ItemFormDto;
 import com.shopping.dto.ItemImgDto;
+import com.shopping.dto.ItemSearchDto;
+import com.shopping.dto.MainItemDto;
 import com.shopping.entity.Item;
 import com.shopping.entity.ItemImg;
 import com.shopping.repository.ItemImgRepository;
 import com.shopping.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -93,4 +97,24 @@ public class ItemService {
 
         return item.getId(); // 수정된 상품의 id를 반환합니다.
     }
+
+    @Transactional(readOnly = true)
+    public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        // 상품 검색 조건을 이용하여 페이징 객체를 반환합니다.
+        return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
+        return itemRepository.getMainItemPage(itemSearchDto, pageable) ;
+    }
 }
+
+
+
+
+
+
+
+
+
