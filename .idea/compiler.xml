@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SpringBoot2" />
         <module name="shopping" />
+        <module name="SpringBoot" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringBoot" options="-parameters" />
       <module name="SpringBoot2" options="-parameters" />
       <module name="shopping" options="-parameters" />
     </option>
